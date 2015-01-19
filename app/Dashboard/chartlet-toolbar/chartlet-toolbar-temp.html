@@ -1,0 +1,9 @@
+<section layout="row" layout-sm="column" layout-align="center center" class="chartlet-toolbar">
+	<md-button class="md-fab" aria-label="Settings" ng-click="showButtomSheet($event)"><i class="fa fa-gear"></i></md-button>
+	<md-button class="md-fab" aria-label="Bar chart">
+		<i class="fa fa-bar-chart-o" ng-click="changeGraphType('bar')"></i>
+		<md-tooltip>Bar Graph</md-tooltip>
+	</md-button>
+	<md-button class="md-fab" aria-label="Line chart"><i class="fa fa-line-chart" ng-click="changeGraphType('line')"></i></md-button>
+	<md-button class="md-fab" aria-label="Pie chart"><i class="fa fa-pie-chart" ng-click="changeGraphType('pie')"></i></md-button>
+</section>

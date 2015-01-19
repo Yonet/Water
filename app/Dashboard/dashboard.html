@@ -1,0 +1,45 @@
+<div class='dashboard-container row'>
+
+	<!-- Sidebar -->
+	<div ui-view='sidebar'></div>
+	<!-- /Sidebar -->
+	
+	<!-- Content -->
+	<div  class='content-container'>
+		<div class='global-filters-container'>
+			<label>Grouped by:</label>
+			<ui-select multiple theme='select2' multiple="true"
+				style="width: 400px;"
+				ng-model="groupedBy"
+				class="search-form"
+				on-select="selectFilter($item, 'group')"
+				on-remove="filterRemoved($item)"
+				ng-hide="subviewSelected"
+				ng-cloak>
+				<ui-select-match placeholder="Grouped by...">{{$item.name}}</ui-select-match>
+				<ui-select-choices repeat="group in allGroups | filter: $select.search">
+					<div ng-bind-html="group.name | highlight: $select.search"></div>
+				</ui-select-choices>
+			</ui-select>
+			<!-- /Grouped by -->
+			<label>Filtered by:</label>
+			<!-- <input ng-model="selectedFilters[0].name"></input> -->
+			<ui-select theme='select2' multiple="true"
+				width="800px;"
+				ng-model="selectedFilters"
+				class="search-form global-filters-selection"
+				on-select="selectFilter($item, 'filter')"
+				on-remove="filterRemoved($item)"
+				ng-cloak>
+				<ui-select-match placeholder="Filter...">{{$item.name}}</ui-select-match>
+				<ui-select-choices repeat="group in allFilters| filter: $select.search">
+					<span ng-bind-html="group.name | highlight: $select.search"></span>
+				</ui-select-choices>
+			</ui-select>
+			<!-- /Filtered by -->
+		</div><!-- /global-filters-container -->
+		<section ui-view='content'></section>
+	</div>
+	<!--/ Content-container -->
+</div>
+<!--/ dashboard-container -->

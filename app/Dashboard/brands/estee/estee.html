@@ -1,0 +1,79 @@
+<div class="age-detail-container detail-container">
+	<h3>{{::name}}{{data[0]}}</h3>
+	<!-- Detail related graphs goes in detail-container -->
+ 	<section class="detail-graph-container">
+ 	<!-- 	<po-vertical-bar
+			data="data.data"
+			width="1000"
+		></po-vertical-bar> -->
+		<md-content ng-repeat="group in ageData" ng-show="view==='Age'">
+			<h3>{{ageGroups[$index]}}</h3>
+			<chartlet-toolbar></chartlet-toolbar>
+		 	<po-bar-graph
+				class="po-bar-graph" 
+				width="850"
+				data="ageData[$index]"
+				sorted="true"
+				limitTo="5"
+				ng-if="graphType==='bar'">
+			</po-bar-graph>
+			<!-- po-donut-graph -->
+			<div po-donut-graph
+				width="850"
+				data="ageData[$index]"
+				ng-if="graphType==='pie'">
+			</div>
+			<div po-line-graph
+				width="850"
+				data="ageData[$index]"
+				class="po-line-graph"
+				ng-if="graphType==='line'">
+			</div>
+		</md-content>
+		<!-- /ng-repeat -->
+
+		<md-content ng-repeat="group in skinData" ng-show="view==='Skin Type'">
+			<h3>{{skinGroups[$index]}}</h3>
+			<chartlet-toolbar></chartlet-toolbar>
+		 	<po-bar-graph
+				class="po-bar-graph" 
+				width="850"
+				data="skinData[$index]"
+				sorted="true"
+				limitTo="5"
+				ng-if="graphType==='bar'">
+			</po-bar-graph>
+			<!-- po-donut-graph -->
+			<div po-donut-graph
+				width="850"
+				data="skinData[$index]"
+				ng-if="graphType==='pie'">
+			</div><!-- /po-donut-graph -->
+			<!-- po-line-graph -->
+			<div po-line-graph
+				width="850"
+				data="skinData[$index]"
+				class="po-line-graph"
+				ng-if="graphType==='line'">
+			</div><!-- /po-line-graph -->
+		</md-content>
+		<!-- /ng-repeat -->
+ 	
+ 	
+ 	<!-- /Detail container -->
+
+ 	<!-- Filters container -->
+	 	<div class="filters-container">
+			<ui-select ng-model="filters.selected">
+				<ui-select-match placeholder="Select or search terms in the list...">{{$select.selected.name}}</ui-select-match>
+				<ui-select-choices repeat="term in filters | filter: $select.search">
+					<div ng-bind-html="term.name | highlight: $select.search"></div>
+				</ui-select-choices>
+			</ui-select>
+			<span class='range-value'>{{rangeSlider || 50}}</span>
+			<input type='range' class='range-input' ng-model='rangeSlider'></input>
+		</div>
+	</section>
+	<!-- /Filters container -->
+	
+	

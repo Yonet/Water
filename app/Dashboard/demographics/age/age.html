@@ -1,0 +1,103 @@
+<div class="age-detail-container detail-container">
+	<h3>{{::data.name}}</h3>
+	<!-- Detail related graphs goes in detail-container -->
+
+<!--  	<section class="detail-graph-container">
+
+ 		<div po-line-graph
+ 			class="po-line-graph"
+			data="data.data"
+			width="1000">
+		</div> -->
+ 	
+ 	<!-- /Detail container -->
+
+ 	<!-- Filters container -->
+	 	<!-- <div class="filters-container">
+			<ui-select ng-model="filters.selected">
+				<ui-select-match placeholder="Select or search terms in the list...">{{$select.selected.name}}</ui-select-match>
+				<ui-select-choices repeat="term in filters | filter: $select.search">
+					<div ng-bind-html="term.name | highlight: $select.search"></div>
+				</ui-select-choices>
+			</ui-select>
+			<span class='range-value'>{{rangeSlider || 50}}</span>
+			<input type='range' class='range-input' ng-model='rangeSlider'></input>
+		</div>
+	</section> -->
+	<!-- /Filters container -->
+	
+	<!-- Related container -->
+	<section class="related-container">
+		<md-content chartlet class="chartlet" ng-repeat="category in related">
+			<div class="chartlet-header" layout="row">
+				<h3 flex>{{::category.name | capitalize }}</h3>
+				<div flex="20">Total <md-button class='md-fab' md-theme="cyan">{{category.total | numberFormat}}</md-button>
+				</div>
+			</div>
+<!-- 			<md-tabs md-selected="selectedIndex">
+				<md-tab>Normalized</md-tab>
+				<md-tab>Absolute</md-tab>
+				
+			</md-tabs> -->
+			<!-- <span ng-click="showButtomSheet($event)"><i class="fa fa-gear"></i></span> -->
+			<chartlet-toolbar></chartlet-toolbar>
+
+			
+			<!-- po-bar-graph -->
+			<div po-bar-graph
+				class="po-bar-graph" 
+				width="550"
+				data="category.data"
+				sorted="true"
+				limitTo="5"
+				normalize="true"
+				ng-if="graphType==='bar' && normalize">
+			</div>
+			<div po-bar-graph
+				class="po-bar-graph" 
+				width="550"
+				data="category.data"
+				sorted="true"
+				limitTo="5"
+				normalize="false"
+				ng-if="graphType==='bar'&& !normalize">
+			</div>
+			<!-- /po-bar-graph -->
+			<!-- po-donut-graph -->
+			<div po-donut-graph
+				data="category.data"
+				ng-if="graphType==='pie' && normalize">
+			</div>
+			<div po-donut-graph
+				data="category.data"
+				normalize="normalize"
+				ng-if="graphType==='pie' && !normalize">
+			</div>
+			<!-- /po-donut-graph -->
+			<!-- po-line-graph -->
+			<div po-line-graph
+				data="category.data"
+				class="po-line-graph"
+				normalize="normalize"
+				ng-if="graphType==='line'  && normalize">
+			</div>
+			<div po-line-graph
+				data="category.data"
+				class="po-line-graph"
+				normalize="normalize"
+				ng-if="graphType==='line'  && !normalize">
+			</div>
+			<!-- /po-line-graph -->
+			
+			<section layout="row" layout-sm="column" layout-align="center center">
+				<md-button class="md-raised focus" ng-click="normalize=true">Normalized</md-button>
+				<md-button class="md-raised" ng-click="normalize=false">Absolute</md-button>
+			</section>
+
+			
+		</md-content>
+		<!-- /Chartlet -->
+	</section>
+	<!-- /Related container -->
+</div>
+<!-- /Age Detail container -->

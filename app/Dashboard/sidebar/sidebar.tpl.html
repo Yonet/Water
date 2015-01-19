@@ -1,0 +1,57 @@
+
+<accordion close-others="true" class="list-group">
+	<accordion-group 
+		heading="{{group.name}}" 
+		ng-repeat="group in categories">
+
+		<!-- Detail-dropdown -->
+		<label>Sub Categories</label>
+		
+		<ui-select
+			ng-model="subCategories.selected"
+			groupBy='false' 
+			class="search-form"
+			on-select="selectSubView($item)"
+			ng-cloak>
+			<ui-select-match placeholder="Sub category...">{{$select.selected.name}}</ui-select-match>
+			<ui-select-choices repeat="detail in group.children | filter: {name: $select.search}">
+				<span ng-bind-html="detail.name | highlight: $select.search"></span>
+			</ui-select-choices>
+		</ui-select>
+		<!--/Detail-dropdown -->
+
+		<!-- Filter-sropdown -->
+		<label>Filters</label>
+
+		<!-- Shows the parent category filters -->
+		<ui-select theme='select2' multiple
+			ng-model="selection.selectedFilters"
+			class="search-form"
+			on-select="selectFilter($item)"
+			on-remove="filterRemoved($item)"
+			ng-hide="subviewSelected"
+			ng-cloak>
+			<ui-select-match placeholder="Filter...">{{$item.name}}</ui-select-match>
+			<ui-select-choices repeat="filter in group.filters | filter: $select.search">
+				<span ng-bind-html="filter.name | highlight: $select.search"></span>
+			</ui-select-choices>
+		</ui-select><!-- /Shows the parent category filters -->
+
+		<!-- Shows the sub-category filters -->
+		<ui-select theme='select2' multiple
+			ng-model="selection.selectedFilters"
+			style="width: 160px;" 
+			class="search-form"
+			on-select="selectFilter($item)"
+			on-remove="filterRemoved($item)"
+			ng-show="subviewSelected"
+			ng-cloak>
+			<ui-select-match placeholder="Filter...">{{$item.name}}
+			</ui-select-match>
+			<ui-select-choices repeat="filter in subviewSelected.filters | filter: $select.search">
+				<span ng-bind-html="filter.name | highlight: $select.search" ></span>
+			</ui-select-choices>
+		</ui-select><!-- /Shows the sub-category filters -->
+
+	</accordion-group>
+</accordion>

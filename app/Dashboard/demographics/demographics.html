@@ -1,0 +1,61 @@
+<div class="demographics-container summary-container" popover="I appeared on mouse enter!" popover-trigger="popover">
+
+	</div>
+	<md-content chartlet class="chartlet" ng-repeat="demographic in demographicsData">
+		<h3 ui-sref='app.dashboard.detail({item: "Demographics", detail: demographic.name})'>{{demographic.name}}</h3>
+		<!-- <h3 ui-sref='app.dashboard.detail({item: "Demographics", detail: "Age"})'>Age Groups</h3> -->
+
+		<chartlet-toolbar></chartlet-toolbar>
+		<!-- po-bar-graph -->
+		<div po-bar-graph
+			class="po-bar-graph" 
+			width="550"
+			data="demographic.data"
+			sorted="true"
+			normalize="normalize"
+			ng-if="graphType==='bar' && normalize">
+		</div>
+		<div po-bar-graph
+			class="po-bar-graph" 
+			width="550"
+			data="demographic.data"
+			sorted="true"
+			normalize="normalize"
+			ng-if="graphType==='bar'&& !normalize">
+		</div>
+		<!-- /po-bar-graph -->
+
+		<!-- po-donut-graph -->
+		<div po-donut-graph
+			data="demographic.data"
+			ng-if="graphType==='pie' && normalize">
+		</div>
+		<div po-donut-graph
+			data="demographic.data"
+			normalize="normalize"
+			ng-if="graphType==='pie' && !normalize">
+		</div>
+		<!-- /po-donut-graph -->
+		<!-- po-line-graph -->
+		<div po-line-graph
+			data="demographic.data"
+			class="po-line-graph"
+			normalize="normalize"
+			ng-if="graphType==='line' && normalize">
+		</div>
+		<div po-line-graph
+			data="demographic.data"
+			class="po-line-graph"
+			normalize="normalize"
+			ng-if="graphType==='line' && !normalize">
+		</div>
+		<!-- /po-line-graph -->
+
+		<section layout="row" layout-sm="column" layout-align="center center">
+			<md-button class="md-raised focus" ng-click="normalize=true">Normalized</md-button>
+			<md-button class="md-raised" ng-click="normalize=false">Absolute</md-button>
+		</section>
+	</md-content>
+	<!-- /Age Group Chartlet-->
+	
+</div>

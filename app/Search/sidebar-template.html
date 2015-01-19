@@ -1,0 +1,9 @@
+<div class="list-group">
+	<a class="list-group-item"
+		ng-repeat="item in categories"
+		ng-class="{active: searchTerms.selected.name === item.name}"
+		ui-sref="dashboard.item({item: item.name})"
+		ng-click="selectItem(item)" 
+		ng-cloak>{{::item.name}}
+	</a>
+</div>

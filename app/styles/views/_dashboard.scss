@@ -1,0 +1,255 @@
+//Styles for dashboard view...
+
+.dashboard-container {
+	@include display-flex;
+	@include flex-direction(row);
+	@include flex-wrap(wrap);
+
+	&.row{
+		margin:0;
+	}
+	
+	.list-group {
+		@include flex(0 1 150px);
+		margin: $container-margin;
+	}
+
+	.content-container {
+		@include flex(1 0 900px);
+		margin: $container-margin;
+		width: 100%;
+		border: 1px solid $border-color;
+	}
+
+
+	.chartlet {
+		@include flex(1 0 $chartlet-width);
+		@extend %chartlet;
+		po-line-graph {
+			padding: 0;
+			margin: 0;
+			border: none;
+		}
+		.chartlet-toolbar section {
+			background: red;//#f7f7f7;
+			border-radius: 3px;
+			text-align: center;
+			margin: 1em;
+			position: relative !important;
+			padding-bottom: 10px;
+		}
+		&.md-button:not(.md-fab) {
+			min-width: 10em; 
+			// margin: 10px;
+		}
+		&.md-button {
+			background: red;
+			display: block;
+			margin: 1em;
+			line-height: 25px;
+		}
+
+	}///.chartlet-toolbar
+
+	//graph customization buttons in chartlets
+	.chart-customization {
+		border: 1 px solid red;
+		div {
+			color:white;
+			opacity: 0.9;
+			padding: 8px;
+			border: 1 px solid red;
+
+		}
+		
+		div:nth-child(1) {
+			background: red;
+			border: 1 px solid red;
+		}
+		
+	}///graph customization buttons in chartlets
+
+	.filters-container {
+		@include flex(1 2 30%);
+		@extend %chartlet;
+		border: 1 px solid red;
+		
+	}
+
+	.global-filters-selection {
+		width: 50%;
+	}
+
+	.po-line-graph, po-line-graph {
+		@include flex(2 0 1100px);
+		// @extend %chartlet;
+		border: none;
+		.axis path,
+		.axis line {
+			fill: none;
+			stroke: black;
+			shape-rendering: crispEdges;
+		}
+
+		.x.axis path {
+			display: none;
+		}
+
+		.line {
+			fill: none;
+			stroke: $dark-purple;
+			stroke-width: 1px;
+		}
+	}///po-line-graph
+
+	.md-icon-container md-inline-grid-icon{
+		border: 1px solid red;
+		display: inline-block;
+		height: 48px;
+		width: 48px;
+	}
+
+	.physical-attributes-container {
+		padding: $container-padding;
+		
+		h3 {
+			height: 20px;
+		}
+		
+		partition-graph {
+			@include flex-row;
+			margin: 10px 20px;
+			height: 500px;
+			
+			ul {
+				list-style-type: none;
+				// @include flex-column;
+				// margin-left: 10px;
+				// height: 500px;
+			}
+			
+			.category {
+				// margin-left: 10px;
+				font-weight: $bold;
+			}
+
+			.item {
+				// margin-left: 10px;
+				font-weight: $regular;
+			}
+		}//partition-graph
+
+		.d3-tip {
+			position: fixed;
+			margin: 100px 200px;
+			line-height: 1;
+			font-weight: bold;
+			padding: 12px;
+			background: rgba(0, 0, 0, 0.8);
+			color: #fff;
+			border-radius: 2px;
+		}
+
+		/* Creates a small triangle extender for the tooltip */
+		.d3-tip:after {
+			box-sizing: border-box;
+			display: inline;
+			font-size: 10px;
+			width: 100%;
+			line-height: 1;
+			color: rgba(0, 0, 0, 0.8);
+			content: "\25BC";
+			position: absolute;
+			text-align: center;
+		}
+
+		/* Style northward tooltips differently */
+		.d3-tip.n:after {
+			margin: -1px 0 0 0;
+			top: 100%;
+			left: 0;
+		}
+		.tooltip {
+			display: inline-block;
+			height: 50px;
+			width: 200px;
+		}
+	}
+
+	.summary-container, .detail-container , .related-container, .detail-graph-container, .dashboard-container, .global-filters-container {
+		
+		@extend %chartlet-container;
+		width: 100%;
+		min-width: 650px;
+
+		h3 {
+			// width: 100%;
+			border-bottom: 1px solid $border-color;
+			padding: $text-padding;
+		}
+	}
+
+	.select2 > .select2-choice.ui-select-match {
+		/* Because of the inclusion of Bootstrap */
+		height: 29px;
+	}
+
+	.selectize-control > .selectize-dropdown {
+		top: 36px;
+	}
+
+	///Map Styles
+
+	.land {
+		fill: #ddd;
+		stroke: #fff;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+	}
+
+	.active {
+		fill: #FFDAB9;
+		stroke-width: .5px;
+		// stroke: #FFDAB9;
+	}
+
+	.tooltip {
+		font-size: 20px;
+	}
+
+	.panel-default {
+		width: 190px;
+	}
+
+	.border {
+		fill: none;
+		stroke: #fff;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+	}
+
+	.bubble {
+		fill: brown;
+		fill-opacity: .5;
+		stroke: #fff;
+		stroke-width: .5px;
+	}
+
+	.bubble :hover {
+		stroke: #000;
+	}
+
+	.legend circle {
+		fill: none;
+		stroke: #ccc;
+	}
+
+	.legend text {
+		fill: #777;
+		font: 10px sans-serif;
+		text-anchor: middle;
+	}
+
+
+
+}//Dashboard container

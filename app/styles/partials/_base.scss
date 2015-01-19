@@ -1,0 +1,150 @@
+//imports for all mixins + global project variables.
+
+@import "compass";
+@import "modules/colors";
+@import "modules/utility";
+
+
+///Global variables goes here...
+$default-box-sizing: border-box;
+
+//font-weights
+$light: 100;
+$regular: 300;
+$semi-bold: 400;
+$bold: 500;
+
+
+//Base Font
+$base-font-family: Helvetica Neue;
+$base-font-weight: $regular;
+
+
+
+//Vertical Rhythm. More on http://compass-style.org/reference/compass/typography/vertical_rhythm/
+$base-font-size: 16px;
+$base-line-height: 24px;
+
+// Headings
+$header-font-weight: $bold;
+
+$common-view-padding: 20px;;
+
+$text-pad: 6px;
+$text-padding: 6px 12px;
+$container-padding: 10px;
+
+$container-margin: 20px;
+$border-color: #e4e4e4;
+
+$chartlet-width: 550px;
+
+@include establish-baseline;
+
+//Global classes goes here...
+.app-container {
+	@include display-flex;
+	@include flex-direction(column);
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+//Overwrites the base-font-size to create mid...
+.mid-font-size {
+	@include adjust-font-size-to(20px);
+}
+
+body {
+	font-weight: $regular;
+	color: $base-text;
+}
+
+label {
+	font-weight: $semi-bold;
+	padding-left: $text-pad;
+}
+
+md-tooltip {
+	position: fixed
+}
+
+i.help {
+	@include float(right);
+	@include clearfix;
+}
+
+//Placeholder selector to be extended for chartlet containers 
+%chartlet-container {
+	@include display-flex;
+	@include flex-direction(row);
+	@include flex-wrap(wrap);
+	align-items: flex-start;
+	@include justify-content(flex-start);
+}
+
+%chartlet {
+	height: 550px;
+	border: 1px solid $border-color;
+	margin: $container-margin;
+	padding: $container-padding;
+}
+
+.range-input {
+	color: blue;
+}
+
+.range-value {
+	display: inline-block;
+	background-color: $dark-purple;
+	color: white;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	padding-top: 12px;
+	margin: $container-margin;
+}
+
+.coming-soon {
+	width:100%;
+	height: 400px;
+	p {
+		@include centre(x);
+		@include adjust-font-size-to(40px);
+		padding-top: 40px;
+		color: purple;
+		font-weight: $bold;
+	}
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+
+@mixin flex-column {
+	@include display-flex;
+	@include flex-direction(column);
+	@include flex-wrap(wrap);
+	@include justify-content(flex-start);
+	align-items: flex-start;
+}
+
+@mixin flex-row {
+	@include display-flex;
+	@include flex-direction(row);
+	@include flex-wrap(wrap);
+	@include justify-content(flex-start);
+	align-items: flex-start;
+}
+
+
+
+
+//Imported last to allow you to set defaults for some variables. "$my-constant : #fedcba !default" sets the variable if it is not set already. 
+@import "modules/all";
+

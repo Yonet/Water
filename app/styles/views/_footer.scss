@@ -1,0 +1,71 @@
+@import "modules/colors";
+@import "partials/base";
+
+.footer {
+	padding-left: 20px;
+	padding-top: 30px;
+	background-color: $footer-dark-background-color;
+	color: $header-font-color;
+	font-weight: $header-font-weight;
+	line-height: $base-line-height;
+	height: 100%;
+	
+	.footer-flex-container {
+		@include flex-row;
+		@include justify-content(center);
+		
+		margin: auto;
+		max-width: 1000px;
+		padding-left: 25px;
+
+			
+		.flex-container-column {
+			@include flex-column;
+			@include justify-content(space-around);
+			min-width: 170px;
+			padding: 0;
+			margin: 0 auto;
+			
+			li {
+				padding-top: 10px;
+				list-style-type: none;
+				cursor: pointer;
+				
+				a:link, a:visited, a {
+					text-decoration: none;
+					color: $ay-light-gray;
+				}
+				
+				a:hover {
+					color: white;
+				}
+			}
+			// add a little space between the icon and text
+			.fa {
+				margin: 0 5px;
+			}
+		}
+	}///footer-flex-container
+
+	.copyright-container {
+		width: 	50%;
+		text-align: center;
+		margin: 20px auto;
+		border-top: 1px solid #777e83;
+		color: #777e83;
+		font-size: 10px;
+		padding: 30px 0;
+		margin: 40px auto;
+
+		.brand-icon-light-grey-small {
+			width: 50px;
+			height: 50px;
+			background-image: url("../images/logo/icon-light-grey-small.png");
+		}
+		
+		div {
+			text-align: center;
+			margin: 20px auto;
+		}
+	}
+}

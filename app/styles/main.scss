@@ -1,0 +1,31 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+
+@import "compass";
+
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+//vendor
+@import "vendor/select.scss";
+@import "vendor/select2.scss";
+
+
+//Modules
+@import "partials/base.scss";
+
+//Partials import
+@import "partials/buttons.scss";
+@import "partials/sidebar.scss";
+//end partials import
+
+//Views import
+@import "views/search.scss";
+@import "views/dashboard.scss";
+@import "views/header.scss";
+@import "views/footer.scss";
+//end views import
+
+
+
+

@@ -1,0 +1,43 @@
+<header>
+	<!-- nav-header-bar -->
+	<div class="nav-header-bar">
+		<!-- flex-container -->
+		<div class="flex-container">
+
+			<!-- logo-block -->
+			<div class="logo-block" ui-sref="app">
+			</div>
+			<!-- /logo-block -->
+
+			<!-- nav-block -->
+			<div>
+				<ul class="nav">
+					<li><a ui-sref="vision">About</a></li>
+				</ul>
+			</div>
+			<!-- /nav-block -->
+		</div>
+		<!-- /flex-container -->
+	</div>
+	<!-- /nav-header-bar-->
+	
+	<!-- subHeader -->
+	<div class="subHeader">
+
+		<!-- <a ui-sref="app">Home</a> -->
+		<h4></h4>
+		<p></p>
+			
+		<!--ui-select -->
+		<ui-select ng-model="selectedTerm" on-select="onClick($item)" style="width: 300px;" groupBy='false' class="search-form" ng-cloak>
+			<ui-select-match placeholder="Select or search a category in the list...">{{$select.selected.name}}</ui-select-match>
+			<ui-select-choices repeat="link in searchTerms | filter: $select.search">
+				<span ng-bind-html="link.name | highlight: $select.search" class="{{link.class}}"></span>
+			</ui-select-choices>
+		</ui-select>
+		<!--/ ui-select -->
+		
+		<i class="icon glyphicon glyphicon-question-sign help" ng-click='popover=!popover'></i>
+	</div>
+	<!-- /subHeader -->
+</header>
